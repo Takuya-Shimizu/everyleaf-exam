@@ -1,24 +1,14 @@
-# README
+1. User model
+    1. column: name, type: string
+    2. column: division, type: string
+    3. column: email, type: string
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+2. Task model
+    1. column: title, type: string
+    2. column: content, type: text
+    3. column: deadline, type: date
+    4. column: priority, type: string
+    5. column: status, type:string
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Label model
+    1. column: color, type: string
