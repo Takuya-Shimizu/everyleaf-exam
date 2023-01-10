@@ -1,4 +1,11 @@
-1. User model
+HEROKU デプロイ手順
+  1. git add .
+  2. git commit -m "somethingsomething"
+  3. git push heroku stepxxx:master
+  
+
+
+<!-- 1. User model
     1. column: name, type: string
     2. column: division, type: string
     3. column: email, type: string
@@ -11,4 +18,4 @@
     5. column: status, type:string
 
 3. Label model
-    1. column: color, type: string
+    1. column: color, type: string -->
