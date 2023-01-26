@@ -62,36 +62,37 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
       context 'タスクが作成日時の降順に並んでいる場合' do
         it '新しいタスクが一番上に表示される' do
-          task = FactoryBot.create(:task, deadline: '002023-01-31', user_id: user.id)
+          task = FactoryBot.create(:task_first, deadline: '002023-10-31', user_id: user.id)
           visit tasks_path
-          task_list = all('td').first
-          expect(task_list).to have_content 'test_title_1'
+          sleep(1)
+
+          task_list = all('.task_row')
+          expect(task_list[0]).to have_content '2'
+          expect(task_list[1]).to have_content '1'
         end
       end
       context '終了期限でソートするというリンクを押した場合' do
         it 'タスク一覧が終了期限の降順に表示される' do
-          task1 = FactoryBot.create(:task, deadline: '002023-01-31', user_id: user.id)
-          task2 = FactoryBot.create(:task, title: '2', deadline: Date.today, user_id: user.id)
-          task3 = FactoryBot.create(:task, title: '3', deadline: '002023-06-14', user_id: user.id)
+          task = FactoryBot.create(:task_first, deadline: '002023-10-31', user_id: user.id)
           visit tasks_path
           click_on '終了期限でソートする'
           sleep(1)
 
-          task_desc_test = all('td').first
-          expect(task_desc_test).to have_content 'test_title_1'
+          task_desc_test = all('.task_row')
+          expect(task_desc_test[0]).to have_content 'test_title_1'
+          expect(task_desc_test[1]).to have_content '2'
         end
       end
       context '優先順位でソートするというリンクを押した場合' do
         it 'タスク一覧が優先順位の昇順に表示される' do
-          task1 = FactoryBot.create(:task, deadline: '002023-01-31', user_id: user.id)
-          task2 = FactoryBot.create(:task, title: '2', priority: '中', deadline: '002023-01-31', user_id: user.id)
-          task3 = FactoryBot.create(:task, title: '3', priority: '高', deadline: '002023-01-31', user_id: user.id)
+          task = FactoryBot.create(:task_first, deadline: '002023-01-31', user_id: user.id)
           visit tasks_path
           click_on '優先順位でソートする'
           sleep(1)
           
-          task_priority_test = all('td').first
-          expect(task_priority_test).to have_content '3'
+          task_priority_test = all('.task_row')
+          expect(task_priority_test[0]).to have_content '1'
+          expect(task_priority_test[0]).to have_content '2'
         end
       end
     end
