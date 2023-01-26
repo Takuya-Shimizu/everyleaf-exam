@@ -1,0 +1,10 @@
+<h1><%= @user.name %>のページ</h1>
+
+<p>メールアドレス: <%= @user.email %></p>
+<p>管理者権限: <%= @user.admin %></p>
+
+<% if @user.admin? %>
+  <%= link_to 'ユーザー一覧画面へ',admin_users_path%>
+<%  end %>
+
+<p><%= link_to "タスク一覧画面へ戻る", tasks_path %></p>
