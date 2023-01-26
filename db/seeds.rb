@@ -5,7 +5,8 @@
   User.create!(name: name,
                email: email,
                password: password,
-               )
+               password_confirmation: "password",
+               admin: false)
 end
 
 User.create!(name:  "管理者D",
