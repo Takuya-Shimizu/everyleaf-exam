@@ -14,3 +14,9 @@ User.create!(name:  "管理者D",
              password:  "dddddddd",
              password_confirmation: "dddddddd",
              admin: true)
+
+User.create!(name:  "イニシャルE",
+             email: "eee@gmail.com",
+             password:  "eeeeeeee",
+             password_confirmation: "eeeeeeee",
+             admin: false)
