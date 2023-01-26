@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def admin_login_required
     unless current_user && current_user.admin?
-      redirect_to tasks_path, alert: '管理者権限がないユーザーは管理者画面にはアクセスできません' unless current_user.admin?
+      redirect_to tasks_path, alert: '管理者権限がないユーザーは管理者画面にはアクセスできません'
     end
   end
 end
