@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
     validates :title, presence: true
     validates :content, presence: true
+    belongs_to :user
 
     scope :deadline, -> {order(deadline_at: :desc)}
     scope :search_title, ->(title){where("title LIKE ?", "%#{title}%")}

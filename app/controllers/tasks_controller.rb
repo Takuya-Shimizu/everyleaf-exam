@@ -1,23 +1,24 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :own_task, only: %i[ show edit update destroy ]
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.all.order(created_at: :desc)
     if params[:sort_expired] == 'true'
-      @tasks = Task.all.order(deadline: :desc)
+      @tasks = current_user.tasks.all.order(deadline: :desc)
     end
     if params[:sort_priority]
-      @tasks = Task.all.order(priority: :asc)
+      @tasks = current_user.tasks.all.order(priority: :asc)
     end
     if params[:task].present?
       title = params[:task][:title]
       status = params[:task][:status]
       if params[:task].present? && params[:task][:status].present?
-        @tasks = Task.search_title(title).search_status(status)
+        @tasks = current_user.tasks.search_title(title).search_status(status)
       elsif params[:task].present?
-        @tasks = Task.search_title(title)
-      elsif params[:status].present?
-        @tasks = Task.search_status(status)
+        @tasks = current_user.tasks.search_title(title)
+      else params[:status].present?
+        @tasks = current_user.tasks.search_status(status)
       end
     end
     @tasks = @tasks.page(params[:page]).per(5)
@@ -28,11 +29,11 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to tasks_path, notice: "タスクを登録しました！"
     else
-      render :new
+      render :new if @task.invalid?
     end
   end
 
@@ -63,5 +64,12 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def own_task
+    @task = Task.find(params[:id])
+    unless current_user == Task.find(params[:id]).user
+      redirect_to tasks_path, notice: '他人の情報にはアクセスできません'
+    end
   end
 end
