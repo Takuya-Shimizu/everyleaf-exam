@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'ラベル管理機能', type: :system do
-  user_third = FactoryBot.create(:user_third)
-  task = FactoryBot.create(:task_second, user: user_third)
+#   user_third = FactoryBot.create(:user_third)
+#   task = FactoryBot.create(:task_second, user: user_third)
   describe do
     before do
       visit new_session_path
@@ -17,9 +17,9 @@ RSpec.describe 'ラベル管理機能', type: :system do
           fill_in '内容', with: 'test'
           fill_in '終了期限', with: '002023-01-11'
           select "working", from: "task[status]"
-          check 'test9'
+          check "test1"
           click_button '登録する'
-          expect(page).to have_content 'test9'
+          expect(page).to have_content 'test1'
         end
       end
     end
@@ -40,9 +40,9 @@ RSpec.describe 'ラベル管理機能', type: :system do
     describe '詳細表示機能' do
       context '任意のタスク詳細画面に遷移した場合' do
         it '該当タスクのラベル一覧が表示される' do
-        #   task = FactoryBot.create(:task_second, deadline: '002023-10-31', user_id: user.id)
+          FactoryBot.create(:task_second, deadline: '002023-10-31')
           click_on '詳細', match: :first
-          expect(page).to have_content 'test9'
+          expect(page).to have_content 'test1'
         end
       end
     end

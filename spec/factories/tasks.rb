@@ -23,7 +23,7 @@ FactoryBot.define do
     priority { '高' }
     after(:build) do |task|
       label = create(:label)
-      task.labeling << build(:labeling, task: task_second, label: label)
+      task.labelings << build(:labelings, task: task_second, label: label)
     end
   end
 end
