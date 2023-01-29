@@ -1,4 +1,12 @@
 FactoryBot.define do
+  factory :user_third, class: User do
+    name { "newuserxxx" }
+    email { "newuserxxx@sample.com" }
+    password { "newuserxxx" }
+    password_confirmation{"newuserxxx"}
+    admin {false}
+  end
+
   factory :user_second, class: User do
     name { "newuser999" }
     email { "newuser999@sample.com" }

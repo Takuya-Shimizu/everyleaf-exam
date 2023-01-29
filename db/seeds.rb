@@ -1,22 +1,26 @@
-1.times do |n|
-  name = Faker::Games::Pokemon.name
-  email = Faker::Internet.email
-  password = "password"
-  User.create!(name: name,
-               email: email,
-               password: password,
-               password_confirmation: "password",
-               admin: false)
+# 1.times do |n|
+#   name = Faker::Games::Pokemon.name
+#   email = Faker::Internet.email
+#   password = "password"
+#   User.create!(name: name,
+#                email: email,
+#                password: password,
+#                password_confirmation: "password",
+#                admin: false)
+# end
+
+# User.create!(name:  "管理者D",
+#              email: "ddd@gmail.com",
+#              password:  "dddddddd",
+#              password_confirmation: "dddddddd",
+#              admin: true)
+
+# User.create!(name:  "イニシャルE",
+#              email: "eee@gmail.com",
+#              password:  "eeeeeeee",
+#              password_confirmation: "eeeeeeee",
+#              admin: false)
+
+10.times do |n|
+  Label.create!(name: "test#{n + 1}")
 end
-
-User.create!(name:  "管理者D",
-             email: "ddd@gmail.com",
-             password:  "dddddddd",
-             password_confirmation: "dddddddd",
-             admin: true)
-
-User.create!(name:  "イニシャルE",
-             email: "eee@gmail.com",
-             password:  "eeeeeeee",
-             password_confirmation: "eeeeeeee",
-             admin: false)
