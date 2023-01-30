@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :labelings do
-    asociation { :task_second }
-    asociation { :label }
+    association { :task_second }
+    association { :label }
   end
 end
