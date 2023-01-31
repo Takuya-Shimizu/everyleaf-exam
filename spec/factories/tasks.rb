@@ -21,9 +21,9 @@ FactoryBot.define do
     deadline { '002023-10-31' }
     status { 'waiting' }
     priority { '高' }
-    after(:build) do |task|
-      label = create(:label)
-      task.labelings << build(:labelings, task: task_second, label: label)
-    end
+    # after(:build) do |task|
+    #   label = create(:label)
+    #   task.labelings << build(:labelings, task: task_second, label: label)
+    # end
   end
 end
