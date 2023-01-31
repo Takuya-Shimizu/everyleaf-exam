@@ -1,7 +1,8 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:task) { FactoryBot.create(:task, user: user) }
+  let!(:task_second) { FactoryBot.create(:task_second, user: user) }
+  # let!(:labelings) { FactoryBot.create(:labelings, task: task_second, label: label) }
   describe do
     before do
       visit new_session_path
@@ -73,7 +74,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
       context '終了期限でソートするというリンクを押した場合' do
         it 'タスク一覧が終了期限の降順に表示される' do
-          task = FactoryBot.create(:task_first, deadline: '002023-10-31', user_id: user.id)
+          task = FactoryBot.create(:task, deadline: '002023-12-31', user_id: user.id)
           visit tasks_path
           click_on '終了期限でソートする'
           sleep(1)
